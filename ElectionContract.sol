@@ -95,7 +95,7 @@ contract ElectionContract {
     //validated voter votes onnce for a candidate
     function vote(uint256 candidateId) public  onlyValidatedVoter {
 
-        require(isValidated[msg.sender], "You aren't a valid voter");
+        require(phase == Phase.Voting, "Voting hasn't started yet.");
         require(!hasVoted[msg.sender], "You have already voted");
         require(candidateId < candidates.length, "Invalid candidate ID.");
 
